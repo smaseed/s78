@@ -1,0 +1,56 @@
+.dashboard-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+  }
+  
+  .card1 {
+    background-color: #47663B;
+  }
+  
+  .card2 {
+    background-color: #47663B;
+  }
+  
+  .card3 {
+    background-color: #47663B;
+  }
+  
+  .large-card {
+    padding: 40px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #E8ECD7;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .large-card img {
+    width: 160px;
+    height: 140px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .tech-stack {
+    padding: 20px;
+    background-color: #EED3B1;
+    color: bla;
+    border-radius: 10px;
+    text-align: center;
+  }
