@@ -1,0 +1,29 @@
+.single-card-container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 2rem; 
+  margin-bottom: 1 rem;
+  gap: 20px; 
+  box-sizing: border-box;
+  }
+  
+  .single-card {
+    width: 80%;
+    max-width: 1080px;
+    background-color: #FCFAEE;;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .pie-chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  

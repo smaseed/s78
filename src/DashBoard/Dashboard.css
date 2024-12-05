@@ -1,3 +1,11 @@
+body {
+  background: linear-gradient(to bottom, #493628, #A5B68D); /* Colors flowing from pink to orange */
+  height: 100vh;  /* Ensures the gradient covers the entire viewport */
+  margin: 0;      /* Removes default body margin */
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .dashboard-container {
     padding: 20px;
     font-family: Arial, sans-serif;
@@ -14,30 +22,49 @@
     flex: 1;
     padding: 20px;
     border-radius: 10px;
-    color: white;
+    color: black;
     font-size: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .card1 {
-    background-color: #47663B;
+    background-color: #ECDFCC;
   }
   
   .card2 {
-    background-color: #47663B;
+    background-color: #ECDFCC;
   }
   
   .card3 {
-    background-color: #47663B;
+    background-color: #ECDFCC;
+  }
+
+  .card:hover {
+    transform: scale(1.05); /* Slightly increase the size */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a shadow effect */
+  }
+  
+
+  .main-card {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: #A5B68D;
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .large-card {
     padding: 40px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background-color: #E8ECD7;
+    background-color: #FCFAEE;
     text-align: center;
     font-size: 18px;
     color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .large-card img {
@@ -49,8 +76,14 @@
   
   .tech-stack {
     padding: 20px;
-    background-color: #EED3B1;
-    color: bla;
+    background-color: #493628;
+    color: white;
     border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .large-card:hover, .main-card:hover, .tech-stack:hover {
+    transform: scale(1.05); /* Apply hover effect to other card types */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
   }

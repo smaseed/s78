@@ -4,24 +4,31 @@
 
 body {
     margin: 0;
+    padding-top: 4rem;
 }
 
 .navbar {
-    background-color: #1F4529;
+    background-color: #493628;
     color: white;
     display: flex;
     height: 4rem;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
     padding: 0 2rem;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 
 .logo {
-    font-size: 2rem;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-weight: bold;
-  }
+  font-size: calc(1.5rem + 1vw); 
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  white-space: nowrap; 
+}
+
   
 .navbar ul {
     padding: 0;
@@ -30,6 +37,7 @@ body {
     list-style: none;
     display: flex;
     gap: 2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   }
   
 .navbar a {
@@ -46,5 +54,32 @@ nav a.active {
   }
   
 nav li:hover {
-    background-color: #777;
+    transform: scale(1.10); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+    background-color: #A5B68D;
   }
+
+  .navbar a, .logout-button {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .logout-button {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    transform: scale(1.10); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+  }
+
+  @media (max-width: 600px) {
+    .logo {
+        font-size: 1.5rem; 
+    }
+}

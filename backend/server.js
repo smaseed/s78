@@ -1,11 +1,12 @@
 const express = require('express');
+const { MongoClient } = require('mongodb');
 const app = express()
 
 const jwt = require('jsonwebtoken');
 const { expressjwt: exjwt } = require('express-jwt')
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
     next();
 });
@@ -14,13 +15,21 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-
+const uri = "mongodb+srv://shabbir:shabbir@cluster0.xvshptb.mongodb.net/tax_credits?retryWrites=true&w=majority&appName=Cluster0";
+const client = new MongoClient(uri);
+client.connect()
+.then(() => {
+    console.log('Connected successfully to MongoDB');
+})
+.catch(err => {
+    console.error(err);
+});
 
 const path = require('path');
 
 const mySecretKey = "My Super Secret Key";
 
-const PORT = 3010;
+const PORT = 3000;
 
 const jwtMW = exjwt({
     secret: mySecretKey,
@@ -64,21 +73,37 @@ app.post('/api/login', (req, res) => {
     }
 });
 
-app.get('/api/dashboard', jwtMW, (req, res) => {
-    console.log(req);
-    res.json({
-        success: true,
-        myContent: 'Secret Content that can only be visible to logged in people!!!'
-    });
-});
 
-app.get('/api/summary', jwtMW, (req, res) => {
-    console.log(req);
-    res.json({
-        success: true,
-        myContent: 'Settings Page!'
-    });
-});
+
+app.get('/api/getTypeChartData', async (req, res) => {
+    try {
+
+        const database = client.db("tax_credits");
+        const collection = database.collection("technology_type");
+    
+        // Your database operations here
+        const documents = await collection.find().toArray();
+        console.log(documents);
+        res.json(documents);
+      } catch {
+        console.log("Error with Database Connection")
+      }
+  });
+
+app.get('/api/getInvestmentsData', async (req, res) => {
+    try {
+
+        const database = client.db("tax_credits");
+        const collection = database.collection("investments");
+    
+        // Your database operations here
+        const documents = await collection.find().toArray();
+        console.log(documents);
+        res.json(documents);
+      } catch {
+        console.log("Error with Database Connection")
+      }
+  });
 
 
 app.use(function (err, req, res, next) {

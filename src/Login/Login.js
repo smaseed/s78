@@ -1,12 +1,15 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import DashBoard from "../DashBoard/DashBoard";
+import App from "../App";
 
 import './Login.css'
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -19,21 +22,26 @@ function Login() {
       };
   
       // Send POST request to the backend API
-      const response = await axios.post('http://localhost:3010/api/login', requestBody);
+      const response = await axios.post('http://localhost:3000/api/login', requestBody);
   
       // Check for success in the response
       if (response.data.success) {
-        localStorage.setItem('token', response.data.token); 
-        console.log(window.location.pathname);
-        navigate(window.location.pathname);
+        localStorage.setItem("token", response.data.token); 
+        setLogin(true);
       } else {
         console.log('Authentication failed. Please check your username and password.');
+        window.alert("Authentication failed. Please check your username and password.");
       }
     } catch (err) {
       console.log('An error occurred. Please try again later.');
+      window.alert("Authentication failed. Please check your username and password.");
     }
   };
-
+  if (login){
+    return (
+      <App/>
+    );
+  } else {
     return (
       <div className="login-page">
       <div className="login-card">
@@ -60,6 +68,7 @@ function Login() {
       </div>
     </div>
     );
+  }
   }
   
   export default Login;
