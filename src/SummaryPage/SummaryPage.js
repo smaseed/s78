@@ -7,9 +7,14 @@ function SummaryPage() {
   const [chartData, setChartData] = useState([]);
   
   useEffect(() => {
+    const token = localStorage.getItem('token');
     const fetchChartData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/getTypeChartData');
+        const response = await axios.get('http://localhost:3000/api/getTypeChartData', {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+          },
+        });
         setChartData(response.data); 
         console.log(chartData);
       } catch (error) {
@@ -77,7 +82,6 @@ function SummaryPage() {
                 <p><strong>End-year estimate:</strong> $20 billion to $25 billion in tax credit transactions.</p>
                 <p><strong>Dominant technologies:</strong> Wind, solar, energy storage, and advanced manufacturing credits make up 95% of the deals.</p>
                 <p><strong>Growth opportunities:</strong> Residential solar, distributed generation, and renewable natural gas (RNG) are expected to boost market size further.</p>
-                <p><strong>Solar's share:</strong> Solar accounts for 41% of the available tax credits; hybrid projects make up an additional 9%.</p>
               </ul>
               <div className="pie-chart-container">
                 {chartData.length > 0 ? (
@@ -99,6 +103,7 @@ function SummaryPage() {
                     </a>
                   </p>
               </section>
+              <p><strong>Solar's share:</strong> The above chart depicts the share of transacted tax credits by technology type. Solar accounts for 41% of the available tax credits; hybrid projects (solar + storage) make up an additional 9%. Wind accounts for a significant amount as always.</p>
           </div>
         </div>
       </div>

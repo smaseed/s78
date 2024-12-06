@@ -3,6 +3,9 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
+import { AuthProvider } from './Context/AuthContext';
+import { useAuth } from './Context/AuthContext';
+import AuthRoutes from "./Routes/AuthRoutes";
 import Menu from './Menu/Menu'
 import Dashboard from './DashBoard/DashBoard';
 import SummaryPage from './SummaryPage/SummaryPage';
@@ -11,6 +14,7 @@ import Login from './Login/Login';
 
 function App() {
   const [isTokenAuthenticate, setIsTokenAuthenticate] = useState(false);
+  const {isAuthenticated, logout} = useAuth();
   
   useEffect( () => {
     const token = localStorage.getItem('token');
@@ -23,9 +27,9 @@ function App() {
       const currentTime = Math.floor(Date.now() / 1000);
       isTokenExpired = decodedToken.exp < currentTime;
     }
-  
-    console.log(isTokenExpired);
-    setIsTokenAuthenticate(token && !isTokenExpired);
+    if(isTokenExpired){
+      logout();
+    }
   
   }, []);
 
@@ -33,15 +37,15 @@ function App() {
     <div className="App">
       <Menu className="navbar"/>
       <div className='background'>
-      <div className='mainContainer'>
+      <div className='mainContainer'> 
           <Routes>
-          <Route path='/' element={isTokenAuthenticate? <Dashboard/> : <Login/>}></Route>
-            <Route path='/dashboard' element={isTokenAuthenticate? <Dashboard/> : <Login/>}></Route>
-            <Route path='/summary' element={isTokenAuthenticate? <SummaryPage/> : <Login/>}></Route>
-            <Route path='/report' element={isTokenAuthenticate? <ReportPage/> : <Login/>}></Route>
-            <Route path='/login' element={isTokenAuthenticate? <ReportPage/> : <Login/>}></Route>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/' element={<AuthRoutes/>}/>
+            <Route path='/dashboard' element={isAuthenticated? <Dashboard/>: <Login/>}/>
+            <Route path='/summary' element={isAuthenticated? <SummaryPage/>: <Login/>}/>
+            <Route path='/report' element={isAuthenticated? <ReportPage/>: <Login/>}/>
           </Routes>
-      </div>
+        </div>
       </div>
     </div>
   );

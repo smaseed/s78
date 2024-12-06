@@ -75,7 +75,7 @@ app.post('/api/login', (req, res) => {
 
 
 
-app.get('/api/getTypeChartData', async (req, res) => {
+app.get('/api/getTypeChartData', jwtMW, async (req, res) => {
     try {
 
         const database = client.db("tax_credits");
@@ -90,13 +90,25 @@ app.get('/api/getTypeChartData', async (req, res) => {
       }
   });
 
-app.get('/api/getInvestmentsData', async (req, res) => {
+app.get('/api/getInvestmentsData', jwtMW, async (req, res) => {
     try {
 
         const database = client.db("tax_credits");
         const collection = database.collection("investments");
-    
-        // Your database operations here
+
+        const documents = await collection.find().toArray();
+        res.json(documents);
+      } catch {
+        console.log("Error with Database Connection")
+      }
+  });
+
+app.get('/api/get2015InvestmentData', jwtMW, async (req, res) => {
+    try {
+
+        const database = client.db("tax_credits");
+        const collection = database.collection("2015");
+
         const documents = await collection.find().toArray();
         console.log(documents);
         res.json(documents);
@@ -105,6 +117,19 @@ app.get('/api/getInvestmentsData', async (req, res) => {
       }
   });
 
+app.get('/api/get2024InvestmentData', jwtMW, async (req, res) => {
+    try {
+
+        const database = client.db("tax_credits");
+        const collection = database.collection("2024");
+
+        const documents = await collection.find().toArray();
+        console.log(documents);
+        res.json(documents);
+      } catch {
+        console.log("Error with Database Connection")
+      }
+  });
 
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {

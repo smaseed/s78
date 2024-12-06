@@ -1,42 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import App from '../App';
+import { useAuth } from '../Context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import './Menu.css'
 const Menu = () => {
-    const [isTokenAuthenticate, setIsTokeAuthenticate] = useState(false);
-    const [loggedOut, setLoggedOut] = useState(false);
-    useEffect( () => {
-        const token = localStorage.getItem('token');
-        let isTokenExpired = true;
-  
-        if (token){
-          const decodedToken = JSON.parse(atob(token.split('.')[1]));
-          console.log(decodedToken);
-          const currentTime = Math.floor(Date.now() / 1000);
-          isTokenExpired = decodedToken.exp < currentTime;
-        }
 
-        setIsTokeAuthenticate(token && !isTokenExpired);
-    });
+    const {isAuthenticated, logout} = useAuth();
+    const navigate = useNavigate();
 
 
     const handleLogout = ()=> {
-        localStorage.removeItem('token');
-        setLoggedOut(true);
-        // navigate('/login');
+        logout();
+        setTimeout(() => {
+            navigate("/login", {replace: true}); // Redirect to the home page (root)
+        }, 100); 
     }
-    if (loggedOut){
-        return (
-            <App/>
-        );
-    } else {
         return (
                 <header className='header'>
                     <nav className='navbar'>
-                    <a href="/" className='logo'>Clean Energy 2024</a>
+                    <a href="/dashboard" className='logo'>Clean Energy 2024</a>
                         <ul>
                             <li>
-                                <Link to="/">Dashboard</Link>                
+                                <Link to="/dashboard">Dashboard</Link>                
                             </li>
                             <li>
                                 <Link to="/summary">Summary</Link>           
@@ -44,7 +30,7 @@ const Menu = () => {
                             <li>
                                 <Link to="/report">Report</Link>
                             </li>
-                            {isTokenAuthenticate && (
+                            {isAuthenticated && (
                                 <button onClick={handleLogout} className='logout-button'>Logout</button>                                
                             )}
 
@@ -52,7 +38,7 @@ const Menu = () => {
                     </nav>
                 </header>
         );
-    }
+    // }
 }
 
 export default Menu

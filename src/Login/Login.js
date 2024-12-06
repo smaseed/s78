@@ -3,13 +3,14 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import DashBoard from "../DashBoard/DashBoard";
 import App from "../App";
+import { useAuth } from "../Context/AuthContext";
 
 import './Login.css'
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [login, setLogin] = useState(false);
+  const {login} = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -27,7 +28,10 @@ function Login() {
       // Check for success in the response
       if (response.data.success) {
         localStorage.setItem("token", response.data.token); 
-        setLogin(true);
+        login(response.data.token);
+        setTimeout(() => {
+          navigate(window.location.pathname, {replace: true}); // Redirect to the home page (root)
+      }, 100); // Small delay
       } else {
         console.log('Authentication failed. Please check your username and password.');
         window.alert("Authentication failed. Please check your username and password.");
@@ -37,11 +41,6 @@ function Login() {
       window.alert("Authentication failed. Please check your username and password.");
     }
   };
-  if (login){
-    return (
-      <App/>
-    );
-  } else {
     return (
       <div className="login-page">
       <div className="login-card">
@@ -68,7 +67,6 @@ function Login() {
       </div>
     </div>
     );
-  }
   }
   
   export default Login;
