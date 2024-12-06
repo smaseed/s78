@@ -40,7 +40,7 @@ function App() {
       <div className='mainContainer'> 
           <Routes>
             <Route path='/login' element={<Login/>}/>
-            <Route path='/' element={<Dashboard/>}/>
+            <Route path='/' element={isAuthenticated? <Dashboard/>: <Login/>}/>
             <Route path='/dashboard' element={isAuthenticated? <Dashboard/>: <Login/>}/>
             <Route path='/summary' element={isAuthenticated? <SummaryPage/>: <Login/>}/>
             <Route path='/report' element={isAuthenticated? <ReportPage/>: <Login/>}/>
