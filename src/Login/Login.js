@@ -30,7 +30,7 @@ function Login() {
         localStorage.setItem("token", response.data.token); 
         login(response.data.token);
         setTimeout(() => {
-          navigate(window.location.pathname, {replace: true}); // Redirect to the home page (root)
+          navigate("/dashboard", {replace: true}); // Redirect to the home page (root)
       }, 100); // Small delay
       } else {
         console.log('Authentication failed. Please check your username and password.');

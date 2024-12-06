@@ -33,7 +33,7 @@ function SummaryPage() {
               <section style={{ marginBottom: "20px" }}>
                 <h2>Key Highlights</h2>
                 <ul>
-                  <p><strong>Historic Milestone:</strong> Over $2 tripon will be invested in clean energy projects in 2024, nearly double the investment in fossil fuels.</p>
+                  <p><strong>Historic Milestone:</strong> Over $2 trillion will be invested in clean energy projects in 2024, nearly double the investment in fossil fuels.</p>
                   <p><strong>Shift Since 2015:</strong> Clean energy spending has surpassed fossil fuels due to falling costs, increased efficiency, and policy-driven goals.</p>
                 </ul>
               </section>
