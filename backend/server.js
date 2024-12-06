@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const { expressjwt: exjwt } = require('express-jwt')
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
+    res.setHeader('Access-Control-Allow-Origin', 'http://18.191.208.115:8080');
     res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
     next();
 });

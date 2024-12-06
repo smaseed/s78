@@ -14,7 +14,7 @@ function ReportPage() {
     const token = localStorage.getItem('token');
     const fetchInvestmentChartData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/getInvestmentsData', {
+        const response = await axios.get('http://18.191.208.115:3000/api/getInvestmentsData', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -27,7 +27,7 @@ function ReportPage() {
     };
     const fetchTechnologyChartData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/getTypeChartData', {
+        const response = await axios.get('http://18.191.208.115:3000/api/getTypeChartData', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -40,7 +40,7 @@ function ReportPage() {
     };
     const fetchPrevData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/get2015InvestmentData', {
+        const response = await axios.get('http://18.191.208.115:3000/api/get2015InvestmentData', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -53,7 +53,7 @@ function ReportPage() {
     };
     const fetchCurrentData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/get2024InvestmentData', {
+        const response = await axios.get('http://18.191.208.115:3000/api/get2024InvestmentData', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },

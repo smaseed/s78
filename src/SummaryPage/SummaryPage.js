@@ -10,7 +10,7 @@ function SummaryPage() {
     const token = localStorage.getItem('token');
     const fetchChartData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/api/getTypeChartData', {
+        const response = await axios.get('http://18.191.208.115:3000/api/getTypeChartData', {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
