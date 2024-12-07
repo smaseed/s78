@@ -1,0 +1,27 @@
+# Use a base image with Node.js
+FROM node:18
+
+# Set the working directory for the entire container
+WORKDIR /app
+
+# Copy frontend files from the root directory into the container
+COPY ./public /app/public
+COPY ./src /app/src
+COPY ./package.json /app/package.json
+COPY ./package-lock.json /app/package-lock.json
+
+# Install frontend dependencies
+RUN npm install
+
+# Copy the backend directory
+COPY ./backend /app/backend
+
+# Install backend dependencies (inside the backend folder)
+WORKDIR /app/backend
+RUN npm install
+
+# Expose the necessary ports
+EXPOSE 3000 8080
+
+# Command to run the backend and frontend
+CMD ["sh", "-c", "cd backend && node server.js & cd /app && npm start"]
