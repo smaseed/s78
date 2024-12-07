@@ -3,9 +3,7 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
-import { AuthProvider } from './Context/AuthContext';
 import { useAuth } from './Context/AuthContext';
-import AuthRoutes from "./Routes/AuthRoutes";
 import Menu from './Menu/Menu'
 import Dashboard from './DashBoard/DashBoard';
 import SummaryPage from './SummaryPage/SummaryPage';

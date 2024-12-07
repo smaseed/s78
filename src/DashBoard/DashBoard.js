@@ -36,7 +36,7 @@ const DashBoard = () => {
     label: "U.S. Department of Energy"
   }
   const techDetails =
-    "This project uses React for the frontend, styled with CSS for responsiveness and accessibility. The backend is built with Node.js and Express, leveraging MongoDB as the database. JWT (JSON Web Token) handles authentication for secure user sessions. The application is hosted on a cloud platform using NGINX as the reverse proxy to serve both frontend and backend services efficiently.";
+    "This project uses React for the frontend, styled with CSS for responsiveness and accessibility. The backend is built with Node.js and Express, leveraging MongoDB as the database. JWT (JSON Web Token) handles authentication for secure user sessions. Docker is used to containerize the application for consistency across environments, and AWS is used for scalability and dependability.";
 
   return (
     <div className="dashboard-container">

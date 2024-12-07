@@ -1,8 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-import DashBoard from "../DashBoard/DashBoard";
-import App from "../App";
 import { useAuth } from "../Context/AuthContext";
 
 import './Login.css'
